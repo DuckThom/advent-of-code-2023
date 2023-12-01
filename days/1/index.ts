@@ -1,5 +1,5 @@
 import assert from "assert"
-import { FileType, getInput } from "../utils/get-input.ts"
+import { FileType, getInput } from "../../utils/get-input.ts"
 
 const DAY = 1
 

@@ -5,7 +5,8 @@ export function getPuzzleInputPath(day: number, type: FileType): string {
     return resolve(
         dirname(import.meta.path),
         "..",
-        `day-${day}`,
+        "days",
+        day.toString(),
         type.toString(),
     )
 }

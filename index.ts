@@ -1,5 +1,6 @@
 import fs from "fs"
 import { configDotenv } from "dotenv"
+import { resolve } from "path"
 
 configDotenv()
 
@@ -7,17 +8,14 @@ if (!process.env.SESSION) {
     console.log("No session cookie detected, auto-download will be disabled!")
 }
 
-const days = fs
-    .readdirSync(import.meta.dir)
-    .filter(file => file.startsWith("day-"))
-    .map(day => day.replace("day-", ""))
+const days = fs.readdirSync(resolve(import.meta.dir, "days"))
 
 days.sort()
 
 for (const day of days) {
     console.log(`====== DAY ${day} ======`)
 
-    await import(`./day-${day}/index.ts`)
+    await import(`./days/${day}/index.ts`)
 
     console.log("")
 }
