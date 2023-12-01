@@ -26,7 +26,7 @@ bun run index.ts
 To run a specific puzzle:
 
 ```bash
-bun run <day>/index.ts
+bun run days/<day>/index.ts
 ```
 
 This project was created using `bun init` in bun v1.0.14. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

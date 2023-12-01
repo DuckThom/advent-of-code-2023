@@ -51,6 +51,7 @@ function calculate(input: string, transform: boolean = false): number {
                 .trimEnd()
                 .split("")
                 .filter(v => numRegex.test(v))
+
             chars.forEach(char => {
                 if (firstNumber !== undefined) return
                 if (numRegex.test(char)) firstNumber = char
