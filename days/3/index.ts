@@ -18,11 +18,18 @@ type DetectedNumber = {
 function buildNumberList(matrix: Matrix): DetectedNumber[] {
     const numberList: DetectedNumber[] = []
 
+    /**
+     * Loop through all the rows
+     */
     matrix.forEach((line, row) => {
         let numberBuffer: number[] = []
         let pointBuffer: Point[] = []
 
+        /**
+         * Loop through all the characters
+         */
         line.forEach((char, index) => {
+            // If it's a number...
             if (/[0-9]/.test(char)) {
                 if (numberBuffer.length === 0 && index !== 0) {
                     if (row !== 0) pointBuffer.push([row - 1, index - 1])
@@ -30,15 +37,18 @@ function buildNumberList(matrix: Matrix): DetectedNumber[] {
                     pointBuffer.push([row + 1, index - 1])
                 }
 
+                // Push the char to the number buffer
                 numberBuffer.push(Number(char))
 
                 if (row !== 0) pointBuffer.push([row - 1, index])
                 pointBuffer.push([row + 1, index])
             } else if (numberBuffer.length > 0) {
+                // If it's not a number and the buffer is filled...
                 if (row !== 0) pointBuffer.push([row - 1, index])
                 pointBuffer.push([row, index])
                 pointBuffer.push([row + 1, index])
 
+                // Store the number
                 numberList.push({
                     value: Number(numberBuffer.join("")),
                     points: [...pointBuffer],
