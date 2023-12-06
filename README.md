@@ -1,5 +1,7 @@
 # advent-of-code-2023
 
+[![run-puzzles](https://github.com/DuckThom/advent-of-code-2023/actions/workflows/workflow.yaml/badge.svg?event=push)](https://github.com/DuckThom/advent-of-code-2023/actions/workflows/workflow.yaml)
+
 To install dependencies:
 
 ```bash
