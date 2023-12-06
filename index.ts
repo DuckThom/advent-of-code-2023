@@ -12,6 +12,8 @@ const days = fs.readdirSync(resolve(import.meta.dir, "days"))
 
 days.sort()
 
+const startTime = performance.now()
+
 for (const day of days) {
     console.log(`====== DAY ${day} ======`)
 
@@ -19,3 +21,5 @@ for (const day of days) {
 
     console.log("")
 }
+
+console.log(`All puzzles took: ${performance.now() - startTime}ms`)

@@ -110,4 +110,4 @@ assert(
 
 console.log(`[Part 2] Answer: ${calculatePart2(puzzleInput)}`)
 
-console.log(`Took: ${performance.now() - startTime}ms`)
+console.log(`Puzzle ${DAY} took: ${performance.now() - startTime}ms`)

@@ -163,6 +163,8 @@ function calculatePart2(input: string): number {
     throw new Error("Seed not found")
 }
 
+const startTime = performance.now()
+
 const part1TestResult = calculatePart1(testInput)
 assert(part1TestResult === 35, `Failed to assert ${part1TestResult} equals 35`)
 
@@ -172,3 +174,5 @@ const part2TestResult = calculatePart2(testInput)
 assert(part2TestResult === 46, `Failed to assert ${part2TestResult} equals 46`)
 
 console.log(`[Part 2] Answer: ${calculatePart2(puzzleInput)}`)
+
+console.log(`Puzzle ${DAY} took: ${performance.now() - startTime}ms`)

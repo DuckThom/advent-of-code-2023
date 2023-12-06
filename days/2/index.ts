@@ -111,6 +111,8 @@ function calculatePart2(input: string): number {
     return result
 }
 
+const startTime = performance.now()
+
 const part1TestResult = calculatePart1(testInput)
 assert(part1TestResult === 8, `Failed to assert ${part1TestResult} equals 8`)
 
@@ -123,3 +125,5 @@ assert(
 )
 
 console.log(`[Part 2] Answer: ${calculatePart2(puzzleInput)}`)
+
+console.log(`Puzzle ${DAY} took: ${performance.now() - startTime}ms`)
