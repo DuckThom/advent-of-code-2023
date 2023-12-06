@@ -12,7 +12,7 @@ jobs:
     name: puzzle-runner
     runs-on: ubuntu-latest
     env:
-      SESSION: "${{ github.event.inputs.session-id }}"
+      SESSION: "${{ secrets.SESSION_ID }}"
     steps:
       - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
