@@ -2,10 +2,7 @@ name: run-puzzles
 
 on:
   workflow_dispatch:
-    inputs:
-      session-id:
-        required: true
-        description: Session ID to download puzzle input
+  push:
 
 jobs:
   job:

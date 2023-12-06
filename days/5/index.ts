@@ -136,26 +136,26 @@ function calculatePart1(input: string): number {
 function calculatePart2(input: string): number {
     const [seedRanges, maps] = buildMaps(input)
 
-    let minSeed = Number.MAX_SAFE_INTEGER
-    let maxSeed = Number.MIN_SAFE_INTEGER
+    const ranges: { start: number; end: number }[] = []
 
     while (seedRanges.length > 0) {
         const seed = seedRanges.shift()!
         const range = seedRanges.shift()!
 
-        if (seed < minSeed) {
-            minSeed = seed
-        }
-
-        if (seed + range > maxSeed) {
-            maxSeed = seed + range
-        }
+        ranges.push({
+            start: seed,
+            end: seed + range - 1,
+        })
     }
 
     for (let i = 1; i < 1_000_000_000; i++) {
         const seed = findSeedForLocation(i, maps)
 
-        if (seed >= minSeed && seed < maxSeed) {
+        const inRange = ranges.some(
+            range => seed >= range.start && seed <= range.end,
+        )
+
+        if (inRange) {
             return i
         }
     }
