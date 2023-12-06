@@ -1,0 +1,21 @@
+name: run-puzzles
+
+on:
+  workflow_dispatch:
+    inputs:
+      session-id:
+        required: true
+        description: Session ID to download puzzle input
+
+jobs:
+  job:
+    name: puzzle-runner
+    runs-on: ubuntu-latest
+    env:
+      SESSION: "${{ github.event.inputs.session-id }}"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+
+      - run: bun install
+      - run: bun index.ts
