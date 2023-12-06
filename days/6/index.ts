@@ -36,6 +36,33 @@ function buildRaceList(input: string, asSingleRace: boolean): Race[] {
     return races
 }
 
+function processRacesQuadratic(races: Race[]): number {
+    let result = 0
+
+    races.forEach(race => {
+        let start = Math.ceil(
+            (race.time -
+                Math.pow(race.time * race.time - 4 * race.distance - 1, 0.5)) /
+                2.0,
+        )
+        let end = Math.floor(
+            (race.time +
+                Math.pow(race.time * race.time - 4 * race.distance - 1, 0.5)) /
+                2.0,
+        )
+
+        switch (result) {
+            case 0:
+                result = end - start + 1
+                break
+            default:
+                result *= end - start + 1
+        }
+    })
+
+    return result
+}
+
 function processRaces(races: Race[]): number {
     let result = 0
 
@@ -83,13 +110,13 @@ function processRaces(races: Race[]): number {
 function calculatePart1(input: string): number {
     const races = buildRaceList(input, false)
 
-    return processRaces(races)
+    return processRacesQuadratic(races)
 }
 
 function calculatePart2(input: string): number {
     const races = buildRaceList(input, true)
 
-    return processRaces(races)
+    return processRacesQuadratic(races)
 }
 
 const startTime = performance.now()
