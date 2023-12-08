@@ -66,12 +66,18 @@ function calculatePart1(input: string): number {
     return result
 }
 
+function findLCM(a: number, b: number): number {
+    let lar = Math.max(a, b)
+    let small = Math.min(a, b)
+
+    for (let i = lar; ; i += lar) {
+        if (i % small == 0) return i
+    }
+}
+
 function calculatePart2(input: string): number {
-    let result: number = 0
-    let patternStep = 0
-
     const mapping = parseInput(input)
-
+    const loops: number[] = []
     const locations: number[] = []
 
     mapping.mapping.forEach((map, node) => {
@@ -80,29 +86,35 @@ function calculatePart2(input: string): number {
         }
     })
 
-    while (!locations.every(location => location % 36 === 35)) {
-        for (let i = 0; i < locations.length; i++) {
+    for (let i = 0; i < locations.length; i++) {
+        let patternStep = 0
+        let counter = 0
+
+        while (locations[i] % 36 !== 35) {
             locations[i] =
                 mapping.mapping[locations[i]][mapping.pattern[patternStep]]
-        }
-        if (patternStep === mapping.pattern.length - 1) {
-            patternStep = 0
-        } else {
-            patternStep++
+
+            if (patternStep === mapping.pattern.length - 1) {
+                patternStep = 0
+            } else {
+                patternStep++
+            }
+
+            counter++
         }
 
-        result++
+        loops.push(counter)
     }
 
-    return result
+    return loops.reduce(findLCM)
 }
 
 const startTime = performance.now()
 
-// const part1TestResult = calculatePart1(test1Input)
-// assert(part1TestResult === 2, `Failed to assert ${part1TestResult} equals 2`)
+const part1TestResult = calculatePart1(test1Input)
+assert(part1TestResult === 2, `Failed to assert ${part1TestResult} equals 2`)
 
-// console.log(`[Part 1] Answer: ${calculatePart1(puzzleInput)}`)
+console.log(`[Part 1] Answer: ${calculatePart1(puzzleInput)}`)
 
 const part2TestResult = calculatePart2(test2Input)
 assert(part2TestResult === 6, `Failed to assert ${part2TestResult} equals 6`)
